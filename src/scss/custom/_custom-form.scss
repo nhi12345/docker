@@ -1,0 +1,22 @@
+.form-actions{
+
+    button{
+        margin: 0px 5px;
+    }
+}
+
+ng-multiselect-dropdown.form-control{
+    padding: 0px;
+
+    .multiselect-dropdown{
+
+        .dropdown-btn{
+            border: 0px !important;
+        }
+    }
+}
+
+.alert-danger{
+    padding: 5px 10px;
+    border-radius: .25rem;
+}

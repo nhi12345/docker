@@ -1,0 +1,38 @@
+<app-header
+  [navbarBrandRouterLink]="['/dashboard']"
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/brand/logo.png', width: 155, height: 40, alt: 'Energizer Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/logo.jpg', width: 30, height: 30, alt: 'Energizer Logo'}"
+  [sidebarToggler]="'lg'"
+  [asideMenuToggler]="false">
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item dropdown" dropdown placement="bottom right">
+      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+        <img src="assets/img/avatars/10.png" class="img-avatar" alt="admin@bootstrapmaster.com"/>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <div class="dropdown-header text-center"><strong>Tài khoản</strong></div>
+        <div class="divider"></div>
+        <a class="dropdown-item" (click)="logout()" ><i class="fa fa-lock"></i> Đăng xuất</a>
+      </div>
+    </li>
+  </ul>
+</app-header>
+<div class="app-body">
+    <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">
+      <app-sidebar-nav appLoadingOnElement #loadingMenu="drLoadingOnElement" [navItems]="listMenu" [perfectScrollbar] [disabled]="appSidebar.minimized">
+      </app-sidebar-nav>
+      <app-sidebar-minimizer></app-sidebar-minimizer>
+    </app-sidebar>
+    <main class="main">
+      <cui-breadcrumb>
+      </cui-breadcrumb>
+      <div class="container-fluid">
+        <router-outlet (activate)="onActivate($event)"></router-outlet>
+      </div>
+    </main>
+  </div>
+<app-footer>
+  <span>&copy; 2020.</span>
+  <span class="ml-auto">Powered by Angular</span>
+</app-footer>

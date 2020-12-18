@@ -1,0 +1,31 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Năm khai báo</th>
+      <th>Tên doanh nghiệp</th>
+      <th class="text-right">Mã số thuế</th>
+      <th>Địa chỉ</th>
+      <th class="text-right">Số lao động</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let report of listReportEnergizer; trackBy: trackByFn">
+      <td>{{ report.year }}</td>
+      <td>{{ report.enterpriseName }}</td>
+      <td class="text-right">{{ report.taxCode }}</td>
+      <td>{{ locationService.getProvince(report.province).name}}</td>
+      <td class="text-right">{{ report.employees | number: '1.0-0' : 'it' }}</td>
+      <td class="very-small-width text-center">
+        <i
+          (click)="redirectToEditPage(report.id)"
+          class="button-icon fa fa-file-text-o mr-2 text-primary"
+          aria-hidden="true"
+        >
+          Chi tiết
+        </i>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div appLoadingOnElement #table="drLoadingOnElement"></div>

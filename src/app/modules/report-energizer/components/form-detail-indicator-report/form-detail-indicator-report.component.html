@@ -1,0 +1,301 @@
+<div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <div class="form-group row">
+        <label class="col-md-4 col-form-label"> Năm khai báo</label>
+        <div class="col-md-8">
+          <div class="dropdown" dropdown>
+            <a 
+              class="btn btn-secondary dropdown-toggle ml-4" 
+              style="cursor: pointer;" 
+              role="button" 
+              data-toggle="dropdown" 
+              aria-haspopup="true" 
+              aria-expanded="false" 
+              dropdownToggle>
+              {{ selectedReport.year }}
+            </a>
+            <div class="dropdown-menu" role="menu" *dropdownMenu>
+              <a *ngFor="let year of listYears" class="dropdown-item" style="cursor: pointer" (click)="onSelectYear(year)">
+                {{ year }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-12 col-form-label">
+          <label>
+            <strong class="text-primary">
+              <i class="fa fa-square" aria-hidden="true"></i>
+              Giảm cường độ phát thải khí nhà kính và thúc đẩy sử dụng năng lượng sạch, năng lượng tái tạo
+            </strong>
+          </label>
+        </div>
+      </div>
+   
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Lượng phát thải khí nhà kính </label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.greenhouseGas | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (ktCO2) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Phát thải gián tiếp </label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.indirect | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (ktCO2) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Phát thải do QTNL </label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.energyProcess | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (ktCO2) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Phát thải do QTCN </label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.productionProcess | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (ktCO2) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Phát thải do phát tán </label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.scatter | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (ktCO2) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Lượng phát thải khí nhà kính so với GTSX </label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.greenhouseGasCpmToProductionValue | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (tCO2/tr.đồng) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Lượng phát thải khí nhà kính bình quân đầu người </label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.emissionPerCapita | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (tCO2/người) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-5 col-form-label">Tổng tiêu hao năng lượng cuối cùng</label>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-2"></div>
+        <label class="col-md-2 col-form-label">Tiêu thụ điện</label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.electric | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (GWh) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-2"></div>
+        <label class="col-md-2 col-form-label">Tiêu thụ năng lượng</label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.energy | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (TJ) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-5 col-form-label">Tiêu hao năng lượng so với GTSX</label>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-2"></div>
+        <label class="col-md-2 col-form-label">Tiêu thụ điện</label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.electricCpmToProductionValue | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (kWh/tr.đồng) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-2"></div>
+        <label class="col-md-2 col-form-label">Tiêu thụ năng lượng</label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.energyCpmToProductionValue | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (kJ/tr.đồng) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-12 col-form-label">
+          <label>
+            <strong class="text-primary">
+              <i class="fa fa-square" aria-hidden="true"></i>
+              Xanh hóa sản xuất
+            </strong>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Tổng lượng nước sử dụng cho sản xuất</label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.water | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (m3) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Mức độ sử dụng nước trên một đơn vị GTSX</label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.waterPerProductionValue | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (m3/tỷ đồng) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Công sức lắp đặt điện năng lượng tái tạo</label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.capacityOfRenewableElec | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (MW) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Sản lượng điện năng lương tái tạo</label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.renewableElectric | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (GWh) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-3 col-form-label">Tỷ lệ doanh nghiệp được cấp giấy chứng nhận TCVN ISO 14001/ISO 14001 </label>
+        <div class="col-md-8">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ selectedReport.proportionOfEnterpriseCertified | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (%) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

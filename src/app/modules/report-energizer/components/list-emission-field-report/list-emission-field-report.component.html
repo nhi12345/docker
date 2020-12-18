@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Tên lĩnh vực</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let field of fields; trackBy: trackByFn">
+      <td>{{ field.id }}</td>
+      <td>{{ field.name }}</td>
+      <td class="very-small-width text-center">
+        <i
+          (click)="redirectToEditPage(field.id)"
+          class="button-icon fa fa-file-text-o mr-2 text-primary"
+          aria-hidden="true"
+        >
+          Chi tiết
+        </i>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div appLoadingOnElement #table="drLoadingOnElement"></div>

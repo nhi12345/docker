@@ -1,0 +1,206 @@
+<div appLoadingOnElement #formDetail="drLoadingOnElement">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Tên doanh nghiệp </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-md-7 bg-secondary col-form-label rounded mr-3">
+              {{ detailEmissionReport?.enterpriseName }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Tên ngành sản xuất kinh doanh </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-md-7 bg-secondary col-form-label rounded mr-3">
+              {{ detailEmissionReport?.branchNameAll }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Địa chỉ theo tỉnh </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded mr-3">
+              {{ detailEmissionReport?.province }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Năm khai báo </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.year }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Mã số thuế </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.taxCode }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Số lao động hoạt động trong năm </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.employees | number: '1.0-0' : 'it' }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Phát thải CO2 do tiêu thụ điện </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.electricCO2 / 1000 | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (tCO2) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 col-form-label">
+          <label>Phát thải do quá trình đốt nhiên liệu</label>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> CO2 </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.energyProcess.co2 / 1000 | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (tCO2) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> CH4 </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.energyProcess.ch4 | number: '1.2-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (kgCH4) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> N2O </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.energyProcess.n2O | number: '1.2-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (kgN2O) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 col-form-label">
+          <label>Phát thải do quá trình QTSX</label>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> CO2 </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.productionProcess.co2 / 1000 | number: '1.2-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (tCO2) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> CH4 </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.productionProcess.ch4 | number: '1.2-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (kgCH4) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> N2O </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.productionProcess.n2O | number: '1.2-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (kgN2O) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Tổng CO2 tương đương </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ detailEmissionReport?.totalCO2 / 1000 | number: '1.3-3' : 'it' }}
+            </div>
+            <div class="col-md-2 pl-0">
+              <label class="col-form-label"> (tCO2tđ) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions text-center">
+    <button class="btn btn-primary" (click)="cancel()" type="button">Quay lại</button>
+  </div>
+</div>

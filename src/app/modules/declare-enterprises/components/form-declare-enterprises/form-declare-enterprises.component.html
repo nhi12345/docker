@@ -1,0 +1,435 @@
+<div appLoadingOnElement #loadingFormAdd="drLoadingOnElement">
+  <form *ngIf="formAddEnterprises" class="form-horizontal auto-validated" (ngSubmit)="submit()"
+    [formGroup]="formAddEnterprises">
+
+    <div class="form-group row" formGroupName="baseInfo">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-md-12 col-form-label">
+            <label>
+              <strong class="text-primary">
+                <i class="fa fa-square" aria-hidden="true"></i>
+                Thông tin chung doanh nghiệp
+              </strong>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-11">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="year-declare-input">
+                Năm khai báo
+              </label>
+              <div class="col-md-9">
+                <input [readonly]="true"
+                  type="text"
+                  id="year-declare-input"
+                  name="year-declare-input"
+                  formControlName="foundedYear"
+                  class="form-control"
+                  placeholder="Năm khai báo..." />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="name-company-input">
+                Tên doanh nghiệp
+              </label>
+              <div class="col-md-9">
+                <input type="text"
+                  id="name-company-input"
+                  name="name-company-input"
+                  class="form-control"
+                  formControlName="name"
+                  placeholder="Tên doanh nghiệp..." />
+                <div class="invalid-feedback"
+                  *ngIf="!formAddEnterprises.get('baseInfo.name').valid
+                  &&
+                  formAddEnterprises.get('baseInfo.name').touched">
+                  <div>Vui lòng nhập tên doanh nghiệp</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="tax-code-input">
+                Mã số thuế
+              </label>
+              <div class="col-md-3">
+                <input type="text"
+                  id="tax-code-input"
+                  name="tax-code-input"
+                  class="form-control"
+                  formControlName="taxCode">
+              </div>
+              <label class="col-md-3 col-form-label" for="phone-number-input">
+                Số điện thoại liên lạc
+              </label>
+              <div class="col-md-3">
+                <input type="text"
+                  id="phone-number-input"
+                  name="phone-number-input"
+                  class="form-control"
+                  formControlName="phoneNumber">
+              </div>
+            </div>
+            <div class="form-group row" formGroupName="address">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-md-3 col-form-label">
+                    <label> Địa chỉ doanh nghiệp: </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1"></div>
+                  <div class="col-md-11">
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label"
+                        for="province-input">
+                        Tỉnh/Thành phố
+                      </label>
+                      <div class="col-md-9">
+                        <select
+                          id="province-input"
+                          formControlName="province"
+                          name="province-input"
+                          (change)="onProvinceChange($event.target.value)"
+                          class="form-control pointer">
+                          <option *ngFor="let province of listProvinces" value="{{province.code}}"> {{province.name}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label"
+                        for="district-input">
+                        Quận/Huyện
+                      </label>
+                      <div class="col-md-9">
+                        <select
+                          id="district-input"
+                          name="district-input"
+                          class="form-control pointer"
+                          placeholder="Huyện..."
+                          (change)="onDistrictChange($event.target.value)"
+                          formControlName="district">
+                          <option *ngFor="let district of listDistricts" value="{{district.code}}"> {{district.name}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label" for="town-input">
+                        Xã/Phường
+                      </label>
+                      <div class="col-md-9">
+                        <select
+                          id="town-input"
+                          name="town-input"
+                          class="form-control pointer"
+                          placeholder="Xã..."
+                          formControlName="town">
+                          <option *ngFor="let town of listTowns" value="{{town.code}}">{{town.name}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-6">
+                        <div class="row">
+                          <label class="col-md-6 col-form-label"
+                            for="coordinates-x-input">
+                            Tọa độ X
+                          </label>
+                          <div class="col-md-6">
+                            <input type="text"
+                              id="coordinates-x-input"
+                              name="coordinates-x-input"
+                              class="form-control text-right"
+                              placeholder="Tọa độ X..."
+                              formControlName="xCoordinate"/>
+                            <div class="invalid-feedback"
+                              *ngIf="!formAddEnterprises.get(
+                              'baseInfo.address.xCoordinate'
+                              ).valid &&
+                              formAddEnterprises.get(
+                              'baseInfo.address.xCoordinate'
+                              ).touched">
+                              <div>Vui lòng nhập toạ độ X</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="row">
+                          <label class="col-md-6 col-form-label"
+                            for="coordinates-y-input">
+                            Tọa độ Y
+                          </label>
+                          <div class="col-md-6">
+                            <input type="text"
+                              id="coordinates-y-input"
+                              name="coordinates-y-input"
+                              class="form-control text-right"
+                              placeholder="Tọa độ Y..."
+                              formControlName="yCoordinate"/>
+                            <div class="invalid-feedback"
+                              *ngIf="!formAddEnterprises.get(
+                              'baseInfo.address.yCoordinate'
+                              ).valid &&
+                              formAddEnterprises.get(
+                              'baseInfo.address.yCoordinate'
+                              ).touched">
+                              <div>Vui lòng nhập toạ độ Y</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-6">
+                        <div class="row">
+                          <label class="col-md-6 col-form-label"
+                            for="average-labor-input">
+                            Số lao động trung bình năm
+                          </label>
+                          <div class="col-md-6">
+                            <input type="text"
+                              id="average-labor-input"
+                              name="average-labor-input"
+                              class="form-control text-right"
+                              placeholder="Số lao động trung bình năm..."
+                              formControlName="employees"
+                              appInputOnlyNumberForm/>
+                            <div class="invalid-feedback"
+                              *ngIf="!formAddEnterprises.get(
+                              'baseInfo.address.employees'
+                              ).valid &&
+                              formAddEnterprises.get('baseInfo.address.employees')
+                              .touched">
+                              <div>Vui lòng nhập số lao động trung bình năm</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="row">
+                          <label class="col-md-6 col-form-label"
+                            for="production-value-input">
+                            Giá trị sản xuất của doanh nghiệp
+                          </label>
+                          <div class="col-md-6">
+                            <input type="number"
+                              id="production-value-input"
+                              name="production-value-input"
+                              class="form-control text-right"
+                              placeholder="Giá trị sản xuất..."
+                              formControlName="productionValue" />
+                            <div class="invalid-feedback"
+                              *ngIf="!formAddEnterprises.get(
+                              'baseInfo.address.productionValue'
+                              ).valid &&
+                              formAddEnterprises.get(
+                              'baseInfo.address.productionValue'
+                              ).touched">
+                              <div>Vui lòng nhập giá trị sản xuất</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label"
+                        for="production-value-input">
+                        Lĩnh vực
+                      </label>
+                      <div class="col-md-9">
+                        <ng-multiselect-dropdown class="form-control"
+                          [formControlName]="'branchesId'"
+                          [placeholder]="' -- Chọn lĩnh vực --'"
+                          [data]="listBranches"
+                          [settings]="settingDropdown"
+                          (onSelect)="selectBranch($event)"
+                          (onDeSelect)="deSelectBranch($event)"
+                          (click)="dropDownOpen()"       
+                          (onDropDownClose)="dropDownClose()"
+                          >
+                        </ng-multiselect-dropdown>
+                        <div class="invalid-feedback"
+                          *ngIf="!formAddEnterprises.get(
+                          'baseInfo.address.branchesId'
+                          ).valid &&
+                          formAddEnterprises.get(
+                          'baseInfo.address.branchesId'
+                          ).touched">
+                          <div>Vui lòng chọn lĩnh vực</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="width: 80%" />
+
+    <div class="form-group row"
+      *ngIf="formAddEnterprises.get('energyConsumption')"
+      [formGroupName]="'energyConsumption'">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-md-12 col-form-label">
+            <label>
+              <strong class="text-primary">
+                <i class="fa fa-square" aria-hidden="true"></i>
+                Tiêu thụ năng lượng cho sản xuất
+              </strong>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <ng-container *ngFor="let itemEnergyConsumption of
+              listEnergyConsumption">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label"
+                  for="energy-consumption-{{ itemEnergyConsumption.id }}">
+                  {{ itemEnergyConsumption.name }}
+                </label>
+                <div class="col-md-9">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <input [formControlName]="itemEnergyConsumption.id"
+                        type="number"
+                        id="energy-consumption-{{itemEnergyConsumption.id}}"
+                        name="coal-from-pit"
+                        class="form-control text-right"
+                        placeholder="{{itemEnergyConsumption.name }}..." />
+                      <div class="invalid-feedback"
+                        *ngIf="!formAddEnterprises.get(
+                        'energyConsumption.' +
+                        itemEnergyConsumption.id
+                        ).valid &&
+                        formAddEnterprises.get(
+                        'energyConsumption.' +
+                        itemEnergyConsumption.id
+                        ).touched">
+                        <div>
+                          Vui lòng nhập {{ itemEnergyConsumption.name }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="col-form-label" for="energy-consumption-{{
+                        itemEnergyConsumption.id
+                        }}">
+                        ({{ itemEnergyConsumption.unit }})
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngFor="let branchSelected of branchesSelected">
+      <hr style="width: 80%" />
+
+      <div class="form-group row"
+        *ngIf="formAddEnterprises.get('production' + branchSelected.id)"
+        [formGroupName]="'production' + branchSelected.id">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-md-12 col-form-label">
+              <label>
+                <strong class="text-primary">
+                  <i class="fa fa-square" aria-hidden="true"></i>
+                  Khai báo sản lượng sản phẩm {{ branchSelected.name }}
+                </strong>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+              <ng-container *ngFor="let itemProduction of branchSelected.listProduct">
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="product-{{itemProduction.productionId }}">
+                    {{ itemProduction.name }}
+                  </label>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <input type="number" id="product-{{ itemProduction.id }}"
+                          name="coal-from-pit"
+                          class="form-control text-right"
+                          placeholder="{{ itemProduction.name }}..."
+                          [formControlName]="itemProduction.id"/>
+                        <div class="invalid-feedback"
+                          *ngIf="!formAddEnterprises.get(
+                          'production' +
+                          branchSelected.id +
+                          '.' +
+                          itemProduction.id
+                          ).valid &&
+                          formAddEnterprises.get(
+                          'production' +
+                          branchSelected.id +
+                          '.' +
+                          itemProduction.id
+                          ).touched">
+                          <div>Vui lòng nhập {{ itemProduction.name }}</div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <label class="col-form-label" for="coal-from-input">
+                          ({{ itemProduction.unit }})
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div appLoadingOnElement #loadingFormProduction="drLoadingOnElement"></div>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6">
+        <div class="alert-danger"
+          *ngIf="formAddEnterprises?.get('energyConsumption')?.hasError('energyIncorrect')">
+          <div>{{formAddEnterprises?.get('energyConsumption')?.errors.message}}</div>
+        </div>
+        <ng-container *ngFor="let branchSelected of branchesSelected">
+          <ng-template [ngIf]="formAddEnterprises?.get('production' + branchSelected.id)?.hasError('productIncorrect')">
+            <br>
+            <div class="alert-danger">
+              <div>{{formAddEnterprises?.get('production' + branchSelected.id)?.errors.message}}</div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-actions text-center">
+      <button class="btn btn-primary" type="submit"
+        [disabled]="formAddEnterprises?.invalid || formAddEnterprises?.pending"
+        appLoadingOnElement
+        #buttonSubmit="drLoadingOnElement">
+        {{ enterprisesId ? 'Chỉnh sửa' : 'Thêm'}}
+      </button>
+      <button class="btn btn-primary" (click)="cancel()" type="button">
+        Quay lại
+      </button>
+    </div>
+  </form>
+</div>

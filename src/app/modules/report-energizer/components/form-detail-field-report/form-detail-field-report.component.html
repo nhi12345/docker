@@ -1,0 +1,239 @@
+<div appLoadingOnElement #formDetail="drLoadingOnElement">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Năm khai báo </label>
+        <div class="col-md-9">
+          <div class="dropdown" dropdown>
+            <a 
+              class="btn btn-secondary dropdown-toggle ml-4" 
+              style="cursor: pointer;" 
+              role="button" 
+              data-toggle="dropdown" 
+              aria-haspopup="true" 
+              aria-expanded="false" 
+              dropdownToggle>
+              {{ fieldReport?.year }}
+            </a>
+            <div class="dropdown-menu" role="menu" *dropdownMenu>
+              <a *ngFor="let year of listYears" class="dropdown-item" style="cursor: pointer" (click)="getComsumptionReportByFieldId(year)">
+                {{ year }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Tên Lĩnh vực </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-md-4 bg-secondary col-form-label rounded mr-3">
+              {{ fieldReport?.fieldName }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Số lao động hoạt động trong năm </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.employees | number: '1.0-0' : 'it' }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label"> Tiêu thụ điện </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.electric / 1000 | number: '1.2-3' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (GWh) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 col-form-label">
+          <label>Tiêu thụ nhiên liệu</label>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> Than antraxit </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.antraxitCoal | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> Than bitum </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.bitumCoal | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> Than non </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.bitumCoal | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> Than cốc </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.lignite | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> Than bùn </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.coke | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> Dầu hỏa </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.fuel | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> Dầu DO </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.dooil | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> Dầu FO </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.fooil | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> LPG </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.lpg | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> Khí sinh học </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.bioGas | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="col-md-2 col-form-label"> Sinh khối </label>
+        <div class="col-md-9">
+          <div class="row ml-4">
+            <div class="col-xl-3 col-md-4 bg-secondary col-form-label rounded text-right mr-3">
+              {{ fieldReport?.biomass | number: '1.2-2' : 'it' }}
+            </div>
+            <div class="col-md-3 pl-0">
+              <label class="col-form-label"> (Nghìn tấn) </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-actions text-center">
+    <button class="btn btn-primary" (click)="cancel()" type="button">Quay lại</button>
+  </div>
+</div>

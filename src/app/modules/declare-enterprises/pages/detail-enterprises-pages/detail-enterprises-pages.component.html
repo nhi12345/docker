@@ -1,0 +1,21 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="text-primary">
+            <i class="fa fa-plus mr-2" aria-hidden="true"></i>
+            Thông tin doanh nghiệp lĩnh vực {{fieldsCurrent.name}}
+          </div>
+        </div>
+        <div class="card-body">
+          <app-form-detail-enterprises 
+            (cancelEmitter)="cancel()" 
+            [enterprisesId]="enterprisesId" 
+            [fieldsId]="fieldsCurrent.id">
+          </app-form-detail-enterprises>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

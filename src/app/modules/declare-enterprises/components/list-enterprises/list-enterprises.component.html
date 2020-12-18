@@ -1,0 +1,38 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Lĩnh vực</th>
+      <th>Tên doanh nghiệp</th>
+      <th>Tỉnh</th>
+      <th class="text-right">Số nhân viên</th>
+      <th class="text-right">Giá trị sản xuất</th>
+      <th class="w-25"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let enterprises of listEnterprises ; trackBy: trackByFn">
+      <td class="medium-width" title="{{enterprises.branchNameAll}}">{{enterprises.branchNameAll}}
+      </td>
+      <td>{{enterprises.name}}</td>
+      <td>{{ locationService.getProvince(enterprises.province).name}}</td>
+      <td class="text-right">{{enterprises.employees | number: '1.0-2' : 'it' }}</td>
+      <td class="text-right">{{enterprises.productionValue | number: '1.0-2' : 'it' }}</td>
+      <td class="text-center">
+        <i 
+          (click)="redirectToDetailPage(enterprises.id)"
+          class="button-icon fa fa-file-text-o"
+          aria-hidden="true">
+          Chi tiết
+        </i>
+        <i 
+          (click)="redirectToEditPage(enterprises.id)"
+          class="button-icon fa fa-edit ml-3 text-primary"
+          aria-hidden="true">
+          Chỉnh sửa
+        </i>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div appLoadingOnElement #table="drLoadingOnElement">
+</div>

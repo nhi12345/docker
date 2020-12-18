@@ -1,0 +1,67 @@
+<form class="auto-validated mt-3" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+  <h1>Đăng nhập</h1>
+  <p class="text-muted">Đăng nhập vào tài khoản của bạn</p>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="icon-user"></i></span>
+    </div>
+    <input type="text" type="email" autofocus formControlName="username" class="form-control"
+      placeholder="Username" />
+    <div class="invalid-feedback" *ngIf="
+        loginForm.controls.username?.errors?.required &&
+        loginForm.controls.username?.touched
+      ">
+      <div>Vui lòng nhập tên đăng nhập</div>
+    </div>
+    <div class="invalid-feedback" *ngIf="
+        loginForm.controls.username?.errors?.emailIncorrect &&
+        loginForm.controls.username?.touched
+      ">
+      <div>Email sai định dạng</div>
+    </div>
+    <div class="invalid-feedback" *ngIf="
+        loginForm.controls.username?.errors?.maxlength &&
+        loginForm.controls.username?.touched
+      ">
+      <span>
+        Độ dài tối đa là:
+      </span>
+      <span>
+        {{ loginForm.get("username")?.errors.maxlength.requiredLength }}
+      </span>
+    </div>
+  </div>
+  <div class="input-group mb-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="icon-lock"></i></span>
+    </div>
+    <input type="password" formControlName="password" class="form-control" placeholder="Password" />
+    <div class="invalid-feedback" *ngIf="
+        loginForm.controls.password?.errors?.required &&
+        loginForm.controls.password?.touched
+      ">
+      <div>Vui lòng nhập mật khẩu</div>
+    </div>
+    <div class="invalid-feedback" *ngIf="
+        loginForm.controls.password?.errors?.maxlength &&
+        loginForm.controls.password?.touched
+      ">
+      <span>
+        Độ dài tối đa là:
+      </span>
+      <span>
+        {{ loginForm.get("password")?.errors.maxlength.requiredLength }}
+      </span>
+    </div>
+  </div>
+  <div role="alert" *ngIf="loginForm?.hasError('incorrect')" class="alert alert-danger ng-star-inserted">
+    {{loginForm.errors.message}}
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-primary px-4" appLoadingOnElement #buttonSubmit="drLoadingOnElement">
+        Đăng nhập
+      </button>
+    </div>
+  </div>
+</form>
